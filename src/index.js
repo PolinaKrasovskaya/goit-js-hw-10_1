@@ -10,7 +10,6 @@ const searchBox = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-
 function createCountry (country){
     const markup = country.map(({ flags, name }) => {
         return `<p><img src="${flags.svg}" alt="flag" width="30px"/>${name.official}</p>`
@@ -18,7 +17,6 @@ function createCountry (country){
 
     countryInfo.innerHTML = markup;
 };
-
 
 function createMarkup(data) {
     const country = data.map(({ name, flags, capital, population, languages }) => {
@@ -35,17 +33,14 @@ function createMarkup(data) {
     countryInfo.innerHTML = ''
 };
 
-
 searchBox.addEventListener('input', debounce(() => {
     const name = searchBox.value.trim();
     fetchCountries(name).then(showCountry).catch(showError);
 }, DEBOUNCE_DELAY));
 
-
 function showError (error) {
     console.log(error);
 }
-
 
 function showCountry(country) {
     if (country.status === 404) {
